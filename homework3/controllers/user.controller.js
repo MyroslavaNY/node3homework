@@ -1,21 +1,21 @@
 const db = require('../db/users');
 
-module.exports= {
+module.exports = {
     getSingleUser:(req,res) =>{
-        const {email} = req.params;
+        const { email, password } = req.params;
         if (!user){
             res.status(404).json('Registration,Please');
             return;
         }
-        res.json(user);
+        res.json(db);
     },
 
-    getAllUser:(req,res) =>{
-
-    },
-
-    createUser:(req,res)=>{
-
+    addUser:(req,res)=>{
+        if (isUser){
+            res.status(200).end('Hello');
+            return;
+        }
+            res.status(401).end('Your password is incorrect');
     },
 
 }
