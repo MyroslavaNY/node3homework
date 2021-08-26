@@ -1,17 +1,23 @@
-const db = require('../db/users');
+
+const fs = require('fs');
+const userService = require('../services/user.servis');
+const {createUser, getAllUsers} = userService;
+const dbUsers =require('../db/users');
 
 module.exports = {
     createUser: (req, res) => {
         const {email, password} = req.params;
-        const oneOfUser = users.find((user) => user.email === email && user.password === password);
+        const oneOfUser = dbUsers.find((user) => user.email === email && user.password === password);
         if (!oneOfUser) {
-            users.push(db);
-            res.json(db);
+
+
+                dbUsers.push(req.params);
+            res.json(dbUsers);
             return;
         }
         res.status(404).end('Try again');
     },
     getAllUsers: (req, res) => {
-        res.json(db);
+        res.json(dbUsers);
     }
 }
