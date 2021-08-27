@@ -2,7 +2,7 @@ const User = require('../db/users');
 const ErrorHandler = require('../errors/ErrorHandler');
 
 module.exports = {
-    issUserPresent: async (req,res,next) =>{
+    isUserPresent: async (req,res,next) =>{
         try {
             const { user_id } = req.params;
             const user = await User.findById(user_id);
@@ -29,6 +29,16 @@ module.exports = {
         } catch (e) {
             next(e);
         }
-    }
-
+    },
+    isUserRegistered: async (req, res, next)=>{
+        try {
+            const {email, password} = req.body;
+            if (!email && ! password){
+                throw new ErrorHandler(412, 'Data Not Found');
+            }
+            next();
+        } catch (e){
+            next(e);
+        }
 }
+};
