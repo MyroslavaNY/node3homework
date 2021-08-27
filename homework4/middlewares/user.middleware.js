@@ -7,7 +7,7 @@ module.exports = {
             const { user_id } = req.params;
             const user = await User.findById(user_id);
             if (!user){
-                throw new ErrorHandler(418, 'User Not Found';)
+                throw new ErrorHandler(418, 'User Not Found');
             }
             req.user = user;
 
